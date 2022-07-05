@@ -1,0 +1,36 @@
+services:
+  web:
+    build:
+      dockerfile: docker/nginx/Dockerfile
+      context: .
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    volumes:
+      - public:/var/www/html/public:ro
+      - storage:/var/www/html/storage
+    env_file:
+      - .env.compose
+  app:
+    build:
+      dockerfile: docker/php/Dockerfile
+      context: .
+    depends_on:
+      - database
+    volumes:
+      - public:/app/public
+      - storage:/var/www/html/storage
+    env_file:
+      - .env.compose
+  database:
+    image: mariadb:10.6.8
+    volumes:
+      - database:/var/lib/mysql
+    env_file:
+      - .env.compose
+
+volumes:
+  storage:
+  public:
+  database:
