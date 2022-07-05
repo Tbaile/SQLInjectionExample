@@ -31,6 +31,10 @@
                     </div>
                     @enderror
                 </div>
+                <div class="col-sm-6 mb-2">
+                    <label for="notes" class="form-label">Notes</label>
+                    <textarea id="notes" name="notes" class="form-control"></textarea>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>

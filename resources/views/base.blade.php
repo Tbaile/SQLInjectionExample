@@ -15,6 +15,16 @@
         </div>
     </nav>
     <div class="row">
+        @if(session()->has('return'))
+            <div class="col-12">
+                <div class="alert alert-success">
+                    @if(session()->get('return') == 1)
+                        Grade saved successfully. <br>
+                        (I've hacked the system, all the grades are gonna be 3.5!)
+                    @endif
+                </div>
+            </div>
+        @endif
         <div class="col-12">
             @yield('content')
         </div>

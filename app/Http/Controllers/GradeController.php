@@ -36,10 +36,13 @@ class GradeController extends Controller
         $username = config('database.connections.mysql.username');
         $password = config('database.connections.mysql.password');
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $sql = "INSERT INTO grades (student_id, course_id, grade, created_at, updated_at) VALUES ($student->id, $request->course_id, 3.5, NOW(), NOW())";
-        // use exec() because no results are returned
+        // values
+        $student_id = $student->id;
+        $course_id = $request->input('course_id');
+        $notes = $request->input('notes') ?? 'NULL';
+        $sql = "INSERT INTO grades (student_id, course_id, grade, notes, created_at, updated_at) VALUES ($student_id, $course_id, 3.5, $notes, NOW(), NOW())";
         $conn->exec($sql);
-        // set the PDO error mode to exception
+        session()->flash('return', 1);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return redirect()->route('student.index');
     }
