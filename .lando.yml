@@ -1,0 +1,12 @@
+name: lando-sql-injection
+recipe: laravel
+config:
+  php: '8.1'
+  composer_version: '2.3.7'
+  webroot: public
+  database: mariadb:10.6.8
+  xdebug: "develop,debug"
+services:
+  appserver:
+    build:
+      - composer i
