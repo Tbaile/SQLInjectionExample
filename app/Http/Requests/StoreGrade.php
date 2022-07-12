@@ -24,8 +24,7 @@ class StoreGrade extends FormRequest
     public function rules(): array
     {
         return [
-            'grade' => 'required|numeric|min:0|max:10',
-            'course_id' => 'required|exists:App\Models\Course,id'
+            'grade' => 'required|numeric|min:0|max:10'
         ];
     }
 }

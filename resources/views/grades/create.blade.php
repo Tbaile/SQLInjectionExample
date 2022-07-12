@@ -20,20 +20,11 @@
                 </div>
                 <div class="col-sm-6 mb-2">
                     <label for="course_id" class="form-label">Course</label>
-                    <select id="course_id" name="course_id" class="form-select @error('grade') is-invalid @enderror">
+                    <select id="course_id" name="course_id" class="form-select">
                         @foreach(\App\Models\Course::all() as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
                         @endforeach
                     </select>
-                    @error('course_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="col-sm-6 mb-2">
-                    <label for="notes" class="form-label">Notes</label>
-                    <textarea id="notes" name="notes" class="form-control"></textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>

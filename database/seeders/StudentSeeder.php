@@ -49,6 +49,10 @@ class StudentSeeder extends Seeder
             'surname' => 'Prifti'
         ],
         [
+            'name' => 'Andrea',
+            'surname' => 'Serafini'
+        ],
+        [
             'name' => 'Samuel',
             'surname' => 'Suffer'
         ]

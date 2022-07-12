@@ -39,8 +39,7 @@ class GradeController extends Controller
         // values
         $student_id = $student->id;
         $course_id = $request->input('course_id');
-        $notes = $request->input('notes') ?? 'NULL';
-        $sql = "INSERT INTO grades (student_id, course_id, grade, notes, created_at, updated_at) VALUES ($student_id, $course_id, 3.5, $notes, NOW(), NOW())";
+        $sql = "INSERT INTO grades (student_id, course_id, grade, created_at, updated_at) VALUES ($student_id, $course_id, 3.5, NOW(), NOW())";
         $conn->exec($sql);
         session()->flash('return', 1);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
