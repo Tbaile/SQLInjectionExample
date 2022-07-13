@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Grade extends Model
 {
     protected $fillable = [
-        'grade'
+        'grade',
+        'course_id'
     ];
 
     public function student(): BelongsTo

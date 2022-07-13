@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGrade;
+use App\Models\Grade;
 use App\Models\Student;
 use PDO;
 
@@ -30,19 +31,11 @@ class GradeController extends Controller
      */
     public function store(StoreGrade $request, Student $student)
     {
-        // INSECURE CODE HERE!
-        $servername = config('database.connections.mysql.host');
-        $dbname = config('database.connections.mysql.database');
-        $username = config('database.connections.mysql.username');
-        $password = config('database.connections.mysql.password');
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // values
-        $student_id = $student->id;
-        $course_id = $request->input('course_id');
-        $sql = "INSERT INTO grades (student_id, course_id, grade, created_at, updated_at) VALUES ($student_id, $course_id, 3.5, NOW(), NOW())";
-        $conn->exec($sql);
+        $grade = new Grade();
+        $grade->student()->associate($student);
+        $grade->fill($request->all());
+        $grade->save();
         session()->flash('return', 1);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return redirect()->route('student.index');
     }
 }
